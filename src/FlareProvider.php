@@ -48,9 +48,11 @@ class FlareProvider
     {
         $this->container ??= Container::instance();
 
-        $this->container->singleton(Sender::class, fn () => new $this->config->sender(
-            $this->config->senderConfig
-        ));
+        $this->container->singleton(Sender::class, 
+            fn () => (new $this->config->sender(
+                $this->config->senderConfig
+            ))->sanitizePayloads($this->config->sanitizeMalformedData)
+        );
 
         $this->container->singleton(Api::class, fn () => new Api(
             apiToken: $this->config->apiToken ?? 'No Api Token provided',
