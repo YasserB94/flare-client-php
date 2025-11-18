@@ -64,6 +64,7 @@ it('recursively replaces non-encodable values in nested arrays', function () {
 
 it('replaces non-string non-encodable values', function () {
     $resource = fopen('php://memory', 'r');
+
     try {
 
         $payload = ['res' => $resource];
