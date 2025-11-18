@@ -108,6 +108,7 @@ class FlareConfig
         public string $time = SystemTime::class,
         public array $overriddenGroupings = [],
         public bool $includeStackTraceWithMessages = false,
+        public bool $sanitizeMalformedData = false
     ) {
     }
 
@@ -733,6 +734,10 @@ class FlareConfig
         $this->includeStackTraceWithMessages = $includeStackTraceWithMessages;
 
         return $this;
+    }
+
+    public function sanitizeMalformedData(bool $sanitize = true){
+        $this->sanitizeMalformedData = false;
     }
 
     protected function addCollect(
