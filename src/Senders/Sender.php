@@ -9,7 +9,7 @@ use Spatie\FlareClient\Senders\Support\Response;
 interface Sender
 {
     /**
-     * @param Closure(Response): void $callback
+     * @param  Closure(Response): void  $callback
      */
     public function post(
         string $endpoint,
@@ -18,4 +18,11 @@ interface Sender
         FlarePayloadType $type,
         Closure $callback,
     ): void;
+
+    /**
+     * Whether to sanitize payloads before sending.
+     *
+     * Enabling this will recursively strip any malformed UTF-8 data from the given payload.
+     */
+    public function sanitizePayloads(bool $sanitize = true): Sender;
 }
