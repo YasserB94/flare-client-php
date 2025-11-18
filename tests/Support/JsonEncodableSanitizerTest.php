@@ -32,7 +32,6 @@ describe('sanitize', function () {
 
     it('replaces non-encodable resources', function () {
         $resource = fopen('php://memory', 'r');
-
         try {
             $payload = ['non_encodable' => $resource];
             $sanitizer = new JsonEncodableSanitizer;
@@ -71,7 +70,6 @@ describe('sanitize', function () {
 
         $payload = ["\xB1\x31"];
         $result = $sanitizer->sanitize($payload);
-
         try {
             json_encode($payload, JSON_THROW_ON_ERROR);
         } catch (JsonException $e) {
