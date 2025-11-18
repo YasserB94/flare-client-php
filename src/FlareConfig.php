@@ -736,7 +736,8 @@ class FlareConfig
         return $this;
     }
 
-    public function sanitizeMalformedData(bool $sanitize = true){
+    public function sanitizeMalformedData(bool $sanitize = true)
+    {
         $this->sanitizeMalformedData = false;
     }
 

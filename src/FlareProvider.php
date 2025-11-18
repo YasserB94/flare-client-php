@@ -48,7 +48,8 @@ class FlareProvider
     {
         $this->container ??= Container::instance();
 
-        $this->container->singleton(Sender::class, 
+        $this->container->singleton(
+            Sender::class,
             fn () => (new $this->config->sender(
                 $this->config->senderConfig
             ))->sanitizePayloads($this->config->sanitizeMalformedData)
