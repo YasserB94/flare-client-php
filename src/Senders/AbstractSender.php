@@ -6,7 +6,7 @@ use Spatie\FlareClient\Senders\Support\JsonEncodableSanitizer;
 
 abstract class AbstractSender implements Sender
 {
-    protected $shouldSanitizePayloads;
+    protected bool $shouldSanitizePayloads;
 
     /**
      * @param  array<string,mixed>  $config
