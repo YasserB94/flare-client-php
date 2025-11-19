@@ -6,12 +6,16 @@ use Spatie\FlareClient\Senders\Support\JsonEncodableSanitizer;
 
 abstract class AbstractSender implements Sender
 {
-    protected $shouldSanitizePayloads = false;
+    protected $shouldSanitizePayloads;
 
+    /**
+     * @param  array<string,mixed>  $config
+     */
     public function __construct(
         protected array $config = [],
         protected readonly PayloadSanitizer $sanitizer = new JsonEncodableSanitizer
     ) {
+        $this->shouldSanitizePayloads = $this->config['sanitize_malformed_data'] ?? false;
         //
     }
 
@@ -24,6 +28,11 @@ abstract class AbstractSender implements Sender
 
     /**
      * Sanitizes the payload when applicable
+     *
+     * @template K of array-key
+     *
+     * @param  array<K,mixed>  $payload
+     * @return array<K,mixed>
      */
     protected function preparePayloadForEncoding(array $payload): array
     {
